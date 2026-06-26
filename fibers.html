@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fibers | NattyFibers</title>
+  <meta name="description" content="Explore our complete collection of natural fibers — from cotton to silk. Learn about their properties, origins, and uses.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Fiber Tile Gallery ── */
+    .fiber-gallery-page {
+      margin-top: 64px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      min-height: calc(100vh - 64px);
+    }
+
+    .fiber-tile {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      overflow: hidden;
+      min-height: 320px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(8, 80, 65, 0.82) 0%,
+          rgba(29, 158, 117, 0.50) 50%,
+          rgba(93, 202, 165, 0.25) 100%
+        ),
+        var(--tile-bg, var(--linen))
+        center center / cover no-repeat;
+      transition: all 400ms ease;
+    }
+    .fiber-tile:hover {
+      background:
+        linear-gradient(
+          135deg,
+          rgba(8, 80, 65, 0.55) 0%,
+          rgba(29, 158, 117, 0.25) 50%,
+          rgba(93, 202, 165, 0.10) 100%
+        ),
+        var(--tile-bg, var(--linen))
+        center center / cover no-repeat;
+    }
+
+    .fiber-tile::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent, transparent 40px,
+          rgba(255,255,255,0.02) 40px,
+          rgba(255,255,255,0.02) 41px
+        );
+      pointer-events: none;
+    }
+
+    .fiber-tile-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      transform: translateY(0);
+      transition: transform 400ms ease;
+    }
+
+    .fiber-tile-name {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 2.2rem;
+      letter-spacing: -0.5px;
+      color: #FFFFFF;
+      line-height: 1.15;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+      display: block;
+    }
+
+    .fiber-tile-label {
+      display: inline-block;
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      margin-top: var(--space-sm);
+      background: rgba(8, 80, 65, 0.7);
+      padding: 5px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(4px);
+    }
+
+    /* ── Placeholder tile ── */
+    .fiber-tile--coming {
+      background: var(--linen);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
+    }
+    .fiber-tile--coming .fiber-tile-name {
+      color: var(--color-muted);
+      font-size: 1.4rem;
+      text-shadow: none;
+    }
+    .fiber-tile--coming .fiber-tile-label {
+      color: var(--color-muted);
+      background: rgba(0,0,0,0.06);
+      border-color: rgba(0,0,0,0.08);
+      backdrop-filter: none;
+    }
+
+    @media (max-width: 1024px) {
+      .fiber-gallery-page { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .fiber-gallery-page { grid-template-columns: 1fr; }
+      .fiber-tile { min-height: 220px; }
+      .fiber-tile--coming { min-height: 220px; }
+      .fiber-tile-name { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="NattyFibers" height="32">
+      </a>
+      <ul class="nav-links">
+        <li><a href="fibers.html" aria-current="page">Fibers</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="#">Guide</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <nav class="sidebar-menu" id="sidebarMenu" aria-label="Mobile navigation">
+    <ul>
+      <li><a href="fibers.html" aria-current="page">Fibers</a></li>
+      <li><a href="process.html">Process</a></li>
+      <li><a href="impact.html">Impact</a></li>
+      <li><a href="#">Guide</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       FIBER GALLERY
+       ═══════════════════════════════════════════ -->
+  <div class="fiber-gallery-page">
+
+    <!-- Cotton -->
+    <a href="fibers/cotton.html" class="fiber-tile" style="--tile-bg: url('https://images.pexels.com/photos/21255202/pexels-photo-21255202.jpeg');">
+      <div class="fiber-tile-content">
+        <span class="fiber-tile-name">Cotton</span>
+        <span class="fiber-tile-label">🌱 Plant Fiber</span>
+      </div>
+    </a>
+
+    <!-- Linen (placeholder) -->
+    <div class="fiber-tile--coming">
+      <div class="fiber-tile-content">
+        <span class="fiber-tile-name">Linen</span>
+        <span class="fiber-tile-label">Coming Soon</span>
+      </div>
+    </div>
+
+    <!-- Hemp (placeholder) -->
+    <div class="fiber-tile--coming">
+      <div class="fiber-tile-content">
+        <span class="fiber-tile-name">Hemp</span>
+        <span class="fiber-tile-label">Coming Soon</span>
+      </div>
+    </div>
+
+    <!-- Wool (placeholder) -->
+    <div class="fiber-tile--coming">
+      <div class="fiber-tile-content">
+        <span class="fiber-tile-name">Wool</span>
+        <span class="fiber-tile-label">Coming Soon</span>
+      </div>
+    </div>
+
+    <!-- Silk (placeholder) -->
+    <div class="fiber-tile--coming">
+      <div class="fiber-tile-content">
+        <span class="fiber-tile-name">Silk</span>
+        <span class="fiber-tile-label">Coming Soon</span>
+      </div>
+    </div>
+
+    <!-- More coming (placeholder) -->
+    <div class="fiber-tile--coming">
+      <div class="fiber-tile-content">
+        <span class="fiber-tile-name">More Fibers</span>
+        <span class="fiber-tile-label">Coming Soon</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function() {
+      var toggleBtn = document.getElementById('navToggle');
+      var sidebar   = document.getElementById('sidebarMenu');
+      var overlay   = document.getElementById('sidebarOverlay');
+      if (toggleBtn && sidebar && overlay) {
+        function openSidebar() {
+          sidebar.classList.add('sidebar-menu--open');
+          overlay.classList.add('sidebar-overlay--open');
+          toggleBtn.setAttribute('aria-expanded', 'true');
+          toggleBtn.setAttribute('aria-label', 'Close menu');
+        }
+        function closeSidebar() {
+          sidebar.classList.remove('sidebar-menu--open');
+          overlay.classList.remove('sidebar-overlay--open');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+          toggleBtn.setAttribute('aria-label', 'Open menu');
+        }
+        toggleBtn.addEventListener('click', function() {
+          if (sidebar.classList.contains('sidebar-menu--open')) {
+            closeSidebar();
+          } else {
+            openSidebar();
+          }
+        });
+        overlay.addEventListener('click', closeSidebar);
+      }
+    })();
+  </script>
+
+</body>
+</html>

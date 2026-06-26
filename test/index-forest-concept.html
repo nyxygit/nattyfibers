@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forest Concept · NattyFibers Design Test</title>
+  <meta name="description" content="A fresh design concept for NattyFibers using a forest-inspired palette and DM Sans typography.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════
+       Forest Concept — Design System
+       ═══════════════════════════════════════════════ */
+    :root {
+      /* Palette */
+      --forest:     #085041;
+      --fern:       #1D9E75;
+      --sage-mist:  #5DCAA5;
+      --sprout:     #C0DD97;
+      --linen:      #EBF0DC;
+      --cream:      #F4F1EA;
+      --amber:      #BA7517;
+
+      /* Semantic tokens */
+      --color-text:       #085041;
+      --color-bg:         var(--cream);
+      --color-header-bg:  var(--cream);
+      --color-hero-bg:    var(--linen);
+      --color-nav-link:   var(--forest);
+      --color-accent:     var(--fern);
+      --color-highlight:  var(--amber);
+      --color-muted:      #6B8A7A;
+      --color-light:      var(--linen);
+      --color-card:       #FFFFFF;
+      --color-border:     #D8E0CC;
+
+      /* Typography */
+      --font-display: 'DM Sans', system-ui, -apple-system, sans-serif;
+      --font-body:    'DM Sans', system-ui, -apple-system, sans-serif;
+      --font-label:   'DM Sans', system-ui, -apple-system, sans-serif;
+
+      /* Spacing */
+      --space-sm:  0.5rem;
+      --space-md:  1rem;
+      --space-lg:  1.5rem;
+      --space-xl:  2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      --space-4xl: 6rem;
+
+      --max-width: 1200px;
+      --radius: 8px;
+      --radius-lg: 12px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--color-text);
+      background: var(--color-bg);
+      min-height: 100vh;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+
+    a {
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+    a:hover { color: var(--color-highlight); }
+
+    /* ── Typography ── */
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      color: var(--forest);
+      line-height: 1.2;
+      margin-bottom: var(--space-md);
+    }
+
+    h1 { font-size: 3.2rem; }
+    h2 { font-size: 2.2rem; margin-top: var(--space-3xl); }
+    h3 { font-size: 1.4rem; margin-top: var(--space-xl); }
+    h4 { font-size: 1.1rem; }
+
+    p { margin-bottom: var(--space-md); }
+
+    .label {
+      font-family: var(--font-label);
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+
+    /* ═══════════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════════ */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--color-header-bg);
+      height: 64px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .nav-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: var(--forest);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .nav-logo:hover { color: var(--forest); opacity: 0.8; }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: var(--space-xl);
+      padding: 0;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: var(--font-label);
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-nav-link);
+      text-decoration: none;
+      padding: var(--space-xs) 0;
+      position: relative;
+      transition: color 200ms ease;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transform: scaleX(0);
+      transition: transform 200ms ease;
+    }
+    .nav-links a:hover { color: var(--color-accent); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--forest);
+      border-radius: 2px;
+      transition: all 200ms ease;
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ═══════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════ */
+    .hero {
+      background: var(--color-hero-bg);
+      margin-top: 64px;
+      padding: var(--space-4xl) var(--space-lg);
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+
+    .hero-content .label {
+      display: inline-block;
+      margin-bottom: var(--space-md);
+      color: var(--color-accent);
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      margin-bottom: var(--space-lg);
+      color: var(--forest);
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: var(--color-muted);
+      line-height: 1.7;
+      margin-bottom: var(--space-xl);
+      max-width: 480px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--forest);
+      color: #FFFFFF;
+      font-family: var(--font-label);
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: var(--radius);
+      transition: all 200ms ease;
+    }
+    .hero-cta:hover {
+      background: var(--fern);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-graphic {
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, var(--sprout) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, var(--sage-mist) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, var(--linen) 0%, transparent 70%),
+        var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .hero-graphic::after {
+      content: '🌿';
+      font-size: 6rem;
+      opacity: 0.6;
+    }
+
+    /* ═══════════════════════════════════════════════
+       SECTIONS
+       ═══════════════════════════════════════════════ */
+    .section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-4xl) var(--space-lg);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto var(--space-3xl);
+    }
+    .section-header .label {
+      display: inline-block;
+      margin-bottom: var(--space-sm);
+      color: var(--color-accent);
+    }
+
+    /* ── Feature Grid ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+    }
+
+    .feature-card {
+      background: var(--color-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      padding: var(--space-xl);
+      text-align: center;
+      transition: transform 250ms ease, box-shadow 250ms ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(8, 80, 65, 0.08);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: var(--space-md);
+    }
+    .feature-card h3 {
+      font-size: 1.1rem;
+      margin-top: 0;
+      margin-bottom: var(--space-sm);
+    }
+    .feature-card p {
+      font-size: 0.92rem;
+      color: var(--color-muted);
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    /* ── Fiber Showcase Bars ── */
+    .fiber-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+
+    .fiber-bar {
+      display: flex;
+      align-items: center;
+      min-height: 180px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      text-decoration: none;
+      position: relative;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(8, 80, 65, 0.88) 0%,
+          rgba(29, 158, 117, 0.70) 50%,
+          rgba(93, 202, 165, 0.45) 100%
+        ),
+        var(--fiber-bg, var(--forest))
+        center center / cover no-repeat;
+      transition: transform 250ms ease, box-shadow 250ms ease;
+    }
+    .fiber-bar:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(8, 80, 65, 0.15);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(8, 80, 65, 0.68) 0%,
+          rgba(29, 158, 117, 0.50) 50%,
+          rgba(93, 202, 165, 0.25) 100%
+        ),
+        var(--fiber-bg, var(--forest))
+        center center / cover no-repeat;
+    }
+
+    .fiber-bar-content {
+      position: relative;
+      z-index: 2;
+      padding: var(--space-2xl) var(--space-xl);
+      width: 100%;
+    }
+
+    .fiber-bar-name {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 3.4rem;
+      letter-spacing: -0.5px;
+      color: #FFFFFF;
+      line-height: 1.1;
+      margin-bottom: var(--space-xs);
+    }
+
+    .fiber-bar-tag {
+      display: inline-block;
+      font-family: var(--font-label);
+      font-weight: 500;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.9);
+      padding: 3px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-right: var(--space-sm);
+    }
+
+    /* ═══════════════════════════════════════════════
+       CTA BANNER
+       ═══════════════════════════════════════════════ */
+    .cta-banner {
+      background: var(--forest);
+      padding: var(--space-4xl) var(--space-lg);
+      text-align: center;
+      color: #FFFFFF;
+    }
+
+    .cta-banner h2 {
+      color: #FFFFFF;
+      margin-top: 0;
+    }
+
+    .cta-banner p {
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 500px;
+      margin: 0 auto var(--space-xl);
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--amber);
+      color: #FFFFFF;
+      font-family: var(--font-label);
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: var(--radius);
+      transition: all 200ms ease;
+    }
+    .cta-button:hover {
+      background: #D4892A;
+      color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+
+    /* ═══════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════ */
+    .site-footer {
+      background: var(--cream);
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-3xl) 0 var(--space-xl);
+    }
+
+    .footer-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .footer-heading {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 1rem;
+      color: var(--forest);
+      margin-bottom: var(--space-md);
+    }
+
+    .footer-tagline {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      line-height: 1.6;
+    }
+
+    .footer-links { list-style: none; padding: 0; }
+    .footer-links li { margin-bottom: var(--space-sm); }
+    .footer-links a {
+      font-family: var(--font-label);
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+    .footer-links a:hover { color: var(--forest); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--space-lg);
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--color-muted);
+    }
+
+    /* ═══════════════════════════════════════════════
+       TEST BANNER
+       ═══════════════════════════════════════════════ */
+    .test-banner {
+      background: var(--sprout);
+      color: var(--forest);
+      text-align: center;
+      padding: 8px 16px;
+      font-family: var(--font-label);
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      border-top: 2px solid rgba(8, 80, 65, 0.1);
+    }
+    .test-banner a {
+      color: var(--forest);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .test-banner a:hover { opacity: 0.7; }
+
+    /* ═══════════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid  { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-container { grid-template-columns: 1fr; text-align: center; }
+      .hero-description { margin: 0 auto var(--space-xl); }
+      .hero-title { font-size: 2.6rem; }
+      .hero-graphic { max-width: 240px; margin: 0 auto; }
+      .hero-graphic::after { font-size: 4rem; }
+
+      .feature-grid { grid-template-columns: 1fr; }
+      .fiber-bar-name { font-size: 2.4rem; }
+      .fiber-bar { min-height: 140px; }
+
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 2rem; }
+      .hero-title { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════════ -->
+  <header class="site-header">
+    <nav class="nav-container">
+      <a href="#" class="nav-logo">
+        <span>🌿</span>
+        <span>NattyFibers</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#">Fibers</a></li>
+        <li><a href="#">Process</a></li>
+        <li><a href="#">Impact</a></li>
+        <li><a href="#">Guide</a></li>
+      </ul>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <span class="label">Natural Fibers</span>
+        <h1 class="hero-title">Pure Materials for a Healthier Planet</h1>
+        <p class="hero-description">
+          From field to fabric — natural fibers offer a sustainable, biodegradable
+          path forward that's free from microplastic pollution and kind to your skin.
+        </p>
+        <a href="#" class="hero-cta">Explore Fibers →</a>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-graphic"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FEATURES
+       ═══════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="label">Why Natural</span>
+      <h2>Better for You, Better for the Earth</h2>
+      <p style="color: var(--color-muted);">
+        Natural fibers are renewable, biodegradable, and free from the hidden
+        chemicals found in synthetic textiles.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🌱</span>
+        <h3>100% Biodegradable</h3>
+        <p>Natural fibers decompose naturally, returning nutrients to the soil instead of persisting as microplastic waste.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">💨</span>
+        <h3>Breathable & Comfortable</h3>
+        <p>Natural fibers allow air to circulate, wick moisture away, and regulate your body temperature naturally.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">♻️</span>
+        <h3>Renewable Resource</h3>
+        <p>Grown from plants and animals, natural fibers are replenished each season with minimal environmental impact.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FIBER SHOWCASE
+       ═══════════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="label">Explore</span>
+      <h2>Natural Fibers</h2>
+      <p style="color: var(--color-muted);">
+        From cotton to silk, discover the unique properties and benefits
+        of each natural fiber.
+      </p>
+    </div>
+
+    <div class="fiber-showcase">
+      <a href="#" class="fiber-bar" style="--fiber-bg: url('https://images.pexels.com/photos/21255202/pexels-photo-21255202.jpeg');">
+        <div class="fiber-bar-content">
+          <div class="fiber-bar-name">Cotton</div>
+          <div>
+            <span class="fiber-bar-tag">Breathable</span>
+            <span class="fiber-bar-tag">Soft</span>
+            <span class="fiber-bar-tag">Versatile</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="fiber-bar" style="--fiber-bg: url('https://images.pexels.com/photos/9751651/pexels-photo-9751651.jpeg');">
+        <div class="fiber-bar-content">
+          <div class="fiber-bar-name">Linen</div>
+          <div>
+            <span class="fiber-bar-tag">Durable</span>
+            <span class="fiber-bar-tag">Breathable</span>
+            <span class="fiber-bar-tag">Elegant</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="fiber-bar" style="--fiber-bg: url('https://images.pexels.com/photos/10376405/pexels-photo-10376405.jpeg');">
+        <div class="fiber-bar-content">
+          <div class="fiber-bar-name">Hemp</div>
+          <div>
+            <span class="fiber-bar-tag">Strong</span>
+            <span class="fiber-bar-tag">Sustainable</span>
+            <span class="fiber-bar-tag">Eco-friendly</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       CTA BANNER
+       ═══════════════════════════════════════════════ -->
+  <section class="cta-banner">
+    <span class="label" style="color: rgba(255,255,255,0.5); display: inline-block; margin-bottom: var(--space-sm);">Get Started</span>
+    <h2>Ready to Make the Switch?</h2>
+    <p>Every purchase is a vote for the kind of world you want to live in. Choose natural.</p>
+    <a href="#" class="cta-button">Learn the Basics →</a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div>
+          <h4 class="footer-heading">🌿 NattyFibers</h4>
+          <p class="footer-tagline">Exploring natural fibers for a healthier planet and a sustainable future in fashion and textiles.</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Explore</h4>
+          <ul class="footer-links">
+            <li><a href="#">Fibers</a></li>
+            <li><a href="#">Process</a></li>
+            <li><a href="#">Impact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Learn</h4>
+          <ul class="footer-links">
+            <li><a href="#">Guide</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 NattyFibers. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Test banner ── -->
+  <div class="test-banner">
+    🌿 <strong>Forest Concept</strong> &middot;
+    DM Sans &middot; Fresh palette &middot;
+    <a href="../index.html">Compare with current →</a>
+  </div>
+
+  <script>
+    (function() {
+      var toggleBtn = document.getElementById('navToggle');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+          var expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+          toggleBtn.setAttribute('aria-expanded', !expanded);
+          toggleBtn.setAttribute('aria-label', expanded ? 'Open menu' : 'Close menu');
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
